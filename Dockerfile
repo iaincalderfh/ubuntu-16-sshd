@@ -11,6 +11,6 @@ sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' 
 echo "export VISIBLE=now" >> /etc/profile && \
 chmod 755 /proxy_wrapper.sh && \
 chmod 600 /etc/ssh/sshd_config && \
-mkdir --mode 755 /setenv && \
+mkdir --mode 755 /sshenv && \
 rm -rf /var/lib/apt/lists/*
 EXPOSE 2222
