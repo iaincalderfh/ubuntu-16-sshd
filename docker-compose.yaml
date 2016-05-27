@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ubuntu-16:
+    hostname: ubuntu-16-sshd
+    build: .
+    image: ubuntu-16-sshd
+    user: "1000000"
+    ports:
+      - "22:22"
+    environment:
+      - SUPERVISORD_LOGLEVEL=debug
