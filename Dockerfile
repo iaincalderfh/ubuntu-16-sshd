@@ -4,9 +4,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
 ENV NOTVISIBLE "in users profile"
 RUN \
-chmod 600 /etc/ssh/sshd_config && \
+chmod 600 /etc/ssh/sshd_config /etc/sssd/sssd.conf && \
 chmod 644 /etc/ssh/ssh_config && \
-apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server sssd libpam-sss libnss-sss && \
+apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server sssd ssd-ipa ibpam-sss libnss-sss && \
 mkdir --mode 700 /var/run/sshd && \
 echo 'root:screencast' | chpasswd && \
 # SSH login fix. Otherwise user is kicked off after login

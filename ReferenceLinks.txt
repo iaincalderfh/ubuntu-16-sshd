@@ -1,0 +1,4 @@
+SSSD IPA:
+http://manpages.ubuntu.com/manpages/wily/man5/sssd-ipa.5.html
+https://wiki.ubuntu.com/Enterprise/Authentication/sssd
+
