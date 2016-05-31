@@ -2,7 +2,8 @@ FROM 1and1internet/ubuntu-16:unstable
 MAINTAINER james.poole@fasthosts.com
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
-ENV NOTVISIBLE "in users profile"
+ENV NOTVISIBLE "in users profile" \
+    DOMAIN=gb-je06.live-paas.net
 RUN \
 chmod 600 /etc/ssh/sshd_config /etc/sssd/sssd.conf && \
 chmod 644 /etc/ssh/ssh_config && \
