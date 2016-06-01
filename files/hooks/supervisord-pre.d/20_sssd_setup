@@ -3,6 +3,8 @@
 # Creates the sssd config based on the $DOMAIN run time variable.
 
 if [ -z "$DOMAIN"]; then
+  echo -e "Run time variable \$DOMAIN is not set"
+else
 
 echo -e "
 # Auto generated from 20_sssd_setup in supervisor-pre
@@ -40,7 +42,5 @@ domains = ipa.$DOMAIN
 [ifp]
 " > /etc/sssd/sssd.conf
 
-else
-  echo -e "Run time variable \$DOMAIN not found"
 fi
 
