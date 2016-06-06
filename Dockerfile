@@ -1,5 +1,5 @@
 FROM 1and1internet/ubuntu-16:unstable
-MAINTAINER james.poole@fasthosts.com
+MAINTAINER james.poole@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
 ENV NOTVISIBLE "in users profile"
