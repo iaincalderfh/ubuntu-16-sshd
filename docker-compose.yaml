@@ -1,10 +1,12 @@
 version: '2'
 services:
   ubuntu-16:
-    hostname: ubuntu-16-sshd
     build: .
     image: ubuntu-16-sshd
     ports:
       - "2222:2222"
+    hostname: customer-ssh.fasthosts.co.uk
     environment:
       - SUPERVISORD_LOGLEVEL=debug
+    volumes:
+      - /tmp/logs:/var/log

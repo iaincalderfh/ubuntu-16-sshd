@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Checking SSH fingerprints exist"
+
+DIR="/etc/ssh"
+
+if [ "$(ls -A $DIR)" ]; then
+  echo -e "Directory has contents.\nContinuing with FreeIPA install..."
+else
+  echo -e "Directory is empty.\nAssuming new cluster\nCopying generated SSH fingerprints from backup"
+  cp -rvf /root/ssh/* /etc/ssh/
+fi

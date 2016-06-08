@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Creates the sssd config based on the $DOMAIN run time variable.
+
+if [ -z "$DOMAIN" ]; then
+  echo -e "Run time variable \$DOMAIN is not set"
+else
+  echo "Running FreeIPA Client installer"
+  ipa-client-install \
+  --domain ipa.$DOMAIN_LOWER \
+  --realm IPA.$DOMAIN \
+  -p $HOSTADD_ADMIN \
+  -w $HOSTADD_PW \
+  --hostname "customer-ssh.$DOMAIN_LOWER" \
+  --unattend \
+  --force-join
+fi

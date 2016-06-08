@@ -2,18 +2,23 @@ FROM 1and1internet/ubuntu-16:unstable
 MAINTAINER james.poole@fasthosts.com
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
-ENV NOTVISIBLE "in users profile" \
-    DOMAIN=gb-je06.live-paas.net
+ENV NOTVISIBLE "in users profile"
+ENV DOMAIN="ENVVAR.DOMAIN" \
+    HOSTADD_ADMIN="envVarHere" \
+    HOSTADD_PW="EnvVarHere" \
+    DOMAIN_LOWER="envar.domain"
 RUN \
-chmod 600 /etc/ssh/sshd_config /etc/sssd/sssd.conf && \
-chmod 644 /etc/ssh/ssh_config && \
-apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server sssd sssd-ipa libpam-sss libnss-sss && \
+apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server freeipa-client rsyslog dnsutils && \
 mkdir --mode 700 /var/run/sshd && \
 echo 'root:screencast' | chpasswd && \
 # SSH login fix. Otherwise user is kicked off after login
 sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
 echo "export VISIBLE=now" >> /etc/profile && \
-chmod 755 /proxy_wrapper.sh && \
 mkdir --mode 755 /sshenv && \
-rm -rf /var/lib/apt/lists/*
-EXPOSE 2222
+rm -rf /var/lib/apt/lists/* && \
+mkfifo -m 666 /tmp/logpipe && \
+sed -i -e '/^module(load="imklog")/g' /etc/rsyslog.conf && \
+sed -i -e '/^\$KLogPermitNonKernelFacility/d' /etc/rsyslog.conf && \
+chmod 600 /var/log/btmp && \
+mv /etc/ssh /root/
+EXPOSE 2222 80 88 389 464 123 
