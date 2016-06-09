@@ -14,7 +14,6 @@ echo 'root:screencast' | chpasswd && \
 # SSH login fix. Otherwise user is kicked off after login
 sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
 echo "export VISIBLE=now" >> /etc/profile && \
-mkdir --mode 755 /sshenv && \
 rm -rf /var/lib/apt/lists/* && \
 mkfifo -m 666 /tmp/logpipe && \
 sed -i -e '/^module(load="imklog")/g' /etc/rsyslog.conf && \
