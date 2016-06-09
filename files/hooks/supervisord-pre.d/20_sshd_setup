@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Preparing proxy_wrapper"
+sed -i "s/KUBERNETES_SERVICE_HOST/${KUBERNETES_SERVICE_HOST}/" /proxy_wrapper.sh
+
 echo "Checking SSH fingerprints exist"
 
 DIR="/etc/ssh"
