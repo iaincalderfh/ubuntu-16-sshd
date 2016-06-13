@@ -7,8 +7,8 @@ if [ -z "$DOMAIN" ]; then
 else
   echo "Running FreeIPA Client installer"
   ipa-client-install \
-  --domain ipa.$DOMAIN_LOWER \
-  --realm IPA.$DOMAIN \
+  --domain $DOMAIN_LOWER \
+  --realm $DOMAIN \
   -p $HOSTADD_ADMIN \
   -w $HOSTADD_PW \
   --hostname "customer-ssh.$DOMAIN_LOWER" \
