@@ -3,13 +3,5 @@
 echo "Preparing proxy_wrapper"
 sed -i "s/KUBERNETES_SERVICE_HOST/${KUBERNETES_SERVICE_HOST}/" /proxy_wrapper.sh
 
-echo "Checking SSH fingerprints exist"
-
-DIR="/etc/ssh"
-
-if [ "$(ls -A $DIR)" ]; then
-  echo -e "Directory has contents.\nContinuing with FreeIPA install..."
-else
-  echo -e "Directory is empty.\nAssuming new cluster\nCopying generated SSH fingerprints from backup"
-  cp -rvf /root/ssh/* /etc/ssh/
-fi
+# As /etc/ssh is mounted from a persistent volume, need to copy sshd_config there
+cp -f /sshd_config /etc/ssh

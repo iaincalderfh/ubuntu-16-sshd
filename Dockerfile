@@ -10,7 +10,6 @@ ENV DOMAIN="ENVVAR.DOMAIN" \
 RUN \
 apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server freeipa-client rsyslog dnsutils && \
 mkdir --mode 700 /var/run/sshd && \
-echo 'root:screencast' | chpasswd && \
 # SSH login fix. Otherwise user is kicked off after login
 sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
 echo "export VISIBLE=now" >> /etc/profile && \
@@ -18,6 +17,5 @@ rm -rf /var/lib/apt/lists/* && \
 mkfifo -m 666 /tmp/logpipe && \
 sed -i -e '/^module(load="imklog")/g' /etc/rsyslog.conf && \
 sed -i -e '/^\$KLogPermitNonKernelFacility/d' /etc/rsyslog.conf && \
-chmod 600 /var/log/btmp && \
-mv /etc/ssh /root/
+chmod 600 /var/log/btmp
 EXPOSE 2222 80 88 389 464 123 
