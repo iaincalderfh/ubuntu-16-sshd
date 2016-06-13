@@ -6,7 +6,7 @@ ENV NOTVISIBLE "in users profile"
 ENV DOMAIN="ENVVAR.DOMAIN" \
     HOSTADD_ADMIN="envVarHere" \
     HOSTADD_PW="EnvVarHere" \
-    DOMAIN_LOWER="envar.domain"
+    Dpt-get upOMAIN_LOWER="envar.domain"
 RUN \
 apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server freeipa-client rsyslog dnsutils && \
 mkdir --mode 700 /var/run/sshd && \
@@ -20,5 +20,5 @@ mkfifo -m 666 /tmp/logpipe && \
 sed -i -e '/^module(load="imklog")/g' /etc/rsyslog.conf && \
 sed -i -e '/^\$KLogPermitNonKernelFacility/d' /etc/rsyslog.conf && \
 chmod 600 /var/log/btmp && \
-mv /etc/ssh /root/
+mv /etc/ssh /root/ 
 EXPOSE 2222 80 88 389 464 123 
