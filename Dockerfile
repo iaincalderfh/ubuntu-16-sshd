@@ -17,5 +17,6 @@ rm -rf /var/lib/apt/lists/* && \
 mkfifo -m 666 /tmp/logpipe && \
 sed -i -e '/^module(load="imklog")/g' /etc/rsyslog.conf && \
 sed -i -e '/^\$KLogPermitNonKernelFacility/d' /etc/rsyslog.conf && \
-chmod 600 /var/log/btmp
+chmod 600 /var/log/btmp && \
+mv /etc/ssh /root
 EXPOSE 2222 80 88 389 464 123 
