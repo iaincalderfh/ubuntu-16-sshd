@@ -6,7 +6,7 @@ ENV NOTVISIBLE "in users profile"
 ENV DOMAIN="ENVVAR.DOMAIN" \
     HOSTADD_ADMIN="envVarHere" \
     HOSTADD_PW="EnvVarHere" \
-    Dpt-get upOMAIN_LOWER="envar.domain"
+    DOMAIN_LOWER="envar.domain"
 RUN \
 apt-get update && apt-get -o Dpkg::Options::="--force-confold" install -y openssh-server freeipa-client rsyslog dnsutils && \
 mkdir --mode 700 /var/run/sshd && \
