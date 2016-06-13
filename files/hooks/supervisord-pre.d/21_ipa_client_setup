@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Write the IPA internal IPs to hosts file
+
+if [ -z "$DOMAIN" ]; then
+  echo -e "Run time variable \$DOMAIN is not set"
+else
+  echo "\nfreeipa01.$DOMAIN_LOWER    192.168.0.11\nfreeipa02.$DOMAIN_LOWER    192.168.0.12\n" >> /etc/hosts
+fi
+
 # Creates the sssd config based on the $DOMAIN run time variable.
 
 if [ -z "$DOMAIN" ]; then
